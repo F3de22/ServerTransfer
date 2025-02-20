@@ -2,8 +2,7 @@ package Client;
 
 import java.io.*;
 import java.net.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.nio.file.*;
 import java.util.Base64;
 
 public class Client {
@@ -14,6 +13,13 @@ public class Client {
              BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
              PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
              BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in))) {
+
+            System.out.println("Inserisci il percorso della cartella dove salvare i file scaricati (lascia vuoto per usare la cartella corrente):");
+            String saveDirectory = stdIn.readLine();
+            if (saveDirectory == null || saveDirectory.trim().isEmpty()) {
+                saveDirectory = ".";
+            }
+            final String finalSaveDirectory = saveDirectory; // variabile finale per usarla nell'inner class
 
             // Thread per ricevere i messaggi dal server
             Thread listener = new Thread(() -> {
@@ -28,8 +34,8 @@ public class Client {
                                 String fileName = parts[1];
                                 String encoded = parts[2];
                                 byte[] fileBytes = Base64.getDecoder().decode(encoded);
-                                // Salva il file localmente (nella cartella corrente)
-                                Files.write(Paths.get(fileName), fileBytes);
+                                Path outputPath = Paths.get(finalSaveDirectory, fileName);
+                                Files.write(outputPath, fileBytes);
                                 System.out.println("File " + fileName + " salvato localmente.");
                             }
                         } else {
