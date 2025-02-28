@@ -13,6 +13,19 @@ public class Client {
              BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
              PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
              BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in))) {
+        	
+        	System.out.println("  ______                                                  ________                                        ______                     \n"
+        			+ " /      \\                                                |        \\                                      /      \\                    \n"
+        			+ "|  $$$$$$\\  ______    ______  __     __   ______    ______\\$$$$$$$$______   ______   _______    _______ |  $$$$$$\\ ______    ______  \n"
+        			+ "| $$___\\$$ /      \\  /      \\|  \\   /  \\ /      \\  /      \\ | $$  /      \\ |      \\ |       \\  /       \\| $$_  \\$$/      \\  /      \\ \n"
+        			+ " \\$$    \\ |  $$$$$$\\|  $$$$$$\\\\$$\\ /  $$|  $$$$$$\\|  $$$$$$\\| $$ |  $$$$$$\\ \\$$$$$$\\| $$$$$$$\\|  $$$$$$$| $$ \\   |  $$$$$$\\|  $$$$$$\\\n"
+        			+ " _\\$$$$$$\\| $$    $$| $$   \\$$ \\$$\\  $$ | $$    $$| $$   \\$$| $$ | $$   \\$$/      $$| $$  | $$ \\$$    \\ | $$$$   | $$    $$| $$   \\$$\n"
+        			+ "|  \\__| $$| $$$$$$$$| $$        \\$$ $$  | $$$$$$$$| $$      | $$ | $$     |  $$$$$$$| $$  | $$ _\\$$$$$$\\| $$     | $$$$$$$$| $$      \n"
+        			+ " \\$$    $$ \\$$     \\| $$         \\$$$    \\$$     \\| $$      | $$ | $$      \\$$    $$| $$  | $$|       $$| $$      \\$$     \\| $$      \n"
+        			+ "  \\$$$$$$   \\$$$$$$$ \\$$          \\$      \\$$$$$$$ \\$$       \\$$  \\$$       \\$$$$$$$ \\$$   \\$$ \\$$$$$$$  \\$$       \\$$$$$$$ \\$$      \n"
+        			+ "                                                                                                                                     \n"
+        			+ "                                                                                                                                     \n"
+        			+ "                                                                                                                                     ");
 
             System.out.println("Inserisci il percorso della cartella dove salvare i file scaricati (lascia vuoto per usare la cartella corrente):");
             String saveDirectory = stdIn.readLine();
@@ -23,6 +36,18 @@ public class Client {
 
             // Thread per ricevere i messaggi dal server
             Thread listener = new Thread(() -> {
+            	System.out.println("  __  __              _      _     _                             _ _ \n"
+            			+ " |  \\/  |___ _ _ _  _( )  __| |___(_)  __ ___ _ __  __ _ _ _  __| (_)\n"
+            			+ " | |\\/| / -_| ' | || |/  / _` / -_| | / _/ _ | '  \\/ _` | ' \\/ _` | |\n"
+            			+ " |_|  |_\\___|_||_\\_,_|   \\__,_\\___|_| \\__\\___|_|_|_\\__,_|_||_\\__,_|_|\n"
+            			+ "                                                                     ");
+            	System.out.println(" |------------------------------------------------------------------|\n"
+            			+ " |- list: Visualizza tutti i file presenti nella cartella scelta;   |\n"
+            			+ " |- cd <directory>: Comando per spostarsi tra le directory;         |\n"
+            			+ " |- download <nomefile>: Comando per scaricare un file;             |\n"
+            			+ " |- exit: Comando per chiudere la sessione del client;              |\n"
+            			+ " |------------------------------------------------------------------|\n");
+            	
                 String response;
                 try {
                     while ((response = in.readLine()) != null) {

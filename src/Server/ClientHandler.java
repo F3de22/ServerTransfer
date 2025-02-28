@@ -86,6 +86,7 @@ public class ClientHandler implements Runnable {
             out.println("Directory corrente: " + currentDir.getAbsolutePath());
 
             // CICLO DI GESTIONE DEI COMANDI
+            out.println("Scegli un comando: ");
             String commandLine;
             while ((commandLine = in.readLine()) != null) {
                 String[] parts = commandLine.split(" ");
