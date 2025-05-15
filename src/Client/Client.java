@@ -32,7 +32,7 @@ public class Client {
             if (saveDirectory == null || saveDirectory.trim().isEmpty()) {
                 saveDirectory = ".";
             }
-            final String finalSaveDirectory = saveDirectory; // variabile finale per usarla nell'inner class
+            final String finalSaveDirectory = saveDirectory;
 
             // Thread per ricevere i messaggi dal server
             Thread listener = new Thread(() -> {
@@ -73,7 +73,7 @@ public class Client {
             });
             listener.start();
 
-            // Ciclo di lettura dei comandi da console
+            //lettura dei comandi
             String userInput;
             while ((userInput = stdIn.readLine()) != null) {
                 out.println(userInput);

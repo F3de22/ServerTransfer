@@ -14,7 +14,6 @@ public class Server {
     private List<FileDownloadObserver> observers;
     private File credentialsFile;
 
-    // Costruttore privato per il singleton
     private Server() {
         observers = new ArrayList<>();
         credentialsFile = new File("credentials.txt");

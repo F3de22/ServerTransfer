@@ -17,6 +17,7 @@ public class UserAuthenticator {
             }
         } catch (IOException e) {
             // Nessun utente trovato
+            // TODO: gestire l'eccezione in qualche modo
         }
         return false;
     }

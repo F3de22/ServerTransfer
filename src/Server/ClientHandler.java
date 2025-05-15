@@ -45,7 +45,7 @@ public class ClientHandler implements Runnable {
             in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             out = new PrintWriter(clientSocket.getOutputStream(), true);
 
-            // CICLO DI AUTENTICAZIONE
+            // AUTENTICAZIONE
             boolean authenticated = false;
             while (!authenticated) {
                 out.println("Sei registrato? (si/no):");
@@ -78,14 +78,14 @@ public class ClientHandler implements Runnable {
                 }
             }
 
-            // Imposta la directory iniziale (assicurarsi che la cartella "server_files" esista)
+            // Imposta la directory iniziale e si assicura che la cartella "server_files" esista
             currentDir = new File("server_files");
             if (!currentDir.exists()) {
                 currentDir.mkdirs();
             }
             out.println("Directory corrente: " + currentDir.getAbsolutePath());
 
-            // CICLO DI GESTIONE DEI COMANDI
+            // GESTIONE DEI COMANDI
             out.println("Scegli un comando: ");
             String commandLine;
             while ((commandLine = in.readLine()) != null) {
@@ -95,7 +95,7 @@ public class ClientHandler implements Runnable {
                     out.println("Disconnessione...");
                     break;
                 }
-                // Usa il CommandFactory per ottenere il comando appropriato
+                // Usa il CommandFactory per ottenere il comando giusto
                 Command command = CommandFactory.getCommand(commandName);
                 if (command != null) {
                     command.execute(this, parts);
