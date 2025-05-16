@@ -11,7 +11,7 @@ public class Server {
     private static Server instance;
     private ServerSocket serverSocket;
     private int port = 12345;
-    private List<FileDownloadObserver> observers;
+    private List<FileDownloadObserver> observers; //TODO: Forse va cambiato in protected, controlla l'observer su slide prof
     private File credentialsFile;
 
     private Server() {

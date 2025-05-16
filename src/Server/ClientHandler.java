@@ -78,12 +78,12 @@ public class ClientHandler implements Runnable {
                 }
             }
 
-            // Imposta la directory iniziale e si assicura che la cartella "server_files" esista
+            // Imposta la directory iniziale SOLO di dove stanno i files e si assicura che la cartella "server_files" esista
             currentDir = new File("server_files");
             if (!currentDir.exists()) {
                 currentDir.mkdirs();
             }
-            out.println("Directory corrente: " + currentDir.getAbsolutePath());
+            out.println("Directory dove si trovano i file: " + currentDir.getAbsolutePath());
 
             // GESTIONE DEI COMANDI
             out.println("Scegli un comando: ");

@@ -27,10 +27,12 @@ public class Client {
         			+ "                                                                                                                                     \n"
         			+ "                                                                                                                                     ");
 
-            System.out.println("Inserisci il percorso della cartella dove salvare i file scaricati (lascia vuoto per usare la cartella corrente):");
+            System.out.println("Inserisci il percorso della cartella dove salvare i file scaricati (lascia vuoto per usare la cartella di default):");
+            System.out.println("Cartella di default: ~\\ServerTransfer\\downloaded_files");
             String saveDirectory = stdIn.readLine();
             if (saveDirectory == null || saveDirectory.trim().isEmpty()) {
-                saveDirectory = ".";
+                Path path = Paths.get(".");
+                saveDirectory = path.toAbsolutePath().normalize() + "\\downloaded_files";
             }
             final String finalSaveDirectory = saveDirectory;
 
@@ -47,7 +49,7 @@ public class Client {
             			+ " |- download <nomefile>: Comando per scaricare un file;             |\n"
             			+ " |- exit: Comando per chiudere la sessione del client;              |\n"
             			+ " |------------------------------------------------------------------|\n");
-            	
+
                 String response;
                 try {
                     while ((response = in.readLine()) != null) {
@@ -73,7 +75,7 @@ public class Client {
             });
             listener.start();
 
-            //lettura dei comandi
+            // lettura dei comandi
             String userInput;
             while ((userInput = stdIn.readLine()) != null) {
                 out.println(userInput);
