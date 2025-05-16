@@ -2363,12 +2363,11 @@
 											"_parent": {
 												"$ref": "AAAAAAGVb+6OxX1XfEc="
 											},
-											"visible": false,
 											"font": "Arial;13;0",
 											"parentStyle": true,
-											"left": 504,
-											"top": 1064,
-											"width": 64.32080078125,
+											"left": 405,
+											"top": 1213,
+											"width": 296.18505859375,
 											"height": 13,
 											"text": "«interface»"
 										},
@@ -2381,7 +2380,7 @@
 											"font": "Arial;13;1",
 											"parentStyle": true,
 											"left": 405,
-											"top": 1239,
+											"top": 1228,
 											"width": 296.18505859375,
 											"height": 13,
 											"text": "Command"
@@ -2419,9 +2418,9 @@
 									"font": "Arial;13;0",
 									"parentStyle": true,
 									"left": 400,
-									"top": 1232,
+									"top": 1208,
 									"width": 306.18505859375,
-									"height": 25,
+									"height": 38,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGVb+6OxX1Yx90="
 									},
@@ -2474,7 +2473,7 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 405,
-											"top": 1262,
+											"top": 1251,
 											"width": 296.18505859375,
 											"height": 13,
 											"text": "+execute(handler: ClientHandler, args: String): void",
@@ -2484,7 +2483,7 @@
 									"font": "Arial;13;0",
 									"parentStyle": true,
 									"left": 400,
-									"top": 1257,
+									"top": 1246,
 									"width": 306.18505859375,
 									"height": 23
 								},
@@ -2533,7 +2532,6 @@
 							"top": 1208,
 							"width": 305.18505859375,
 							"height": 72,
-							"stereotypeDisplay": "icon",
 							"nameCompartment": {
 								"$ref": "AAAAAAGVb+6OxX1XfEc="
 							},
@@ -4049,12 +4047,11 @@
 											"_parent": {
 												"$ref": "AAAAAAGVb/DPf36OO5M="
 											},
-											"visible": false,
 											"font": "Arial;13;0",
 											"parentStyle": true,
-											"left": 632,
-											"top": -992,
-											"width": 64.32080078125,
+											"left": 221,
+											"top": 845,
+											"width": 354.69775390625,
 											"height": 13,
 											"text": "«interface»"
 										},
@@ -4067,7 +4064,7 @@
 											"font": "Arial;13;1",
 											"parentStyle": true,
 											"left": 221,
-											"top": 871,
+											"top": 860,
 											"width": 354.69775390625,
 											"height": 13,
 											"text": "FileDownloadObserver"
@@ -4105,9 +4102,9 @@
 									"font": "Arial;13;0",
 									"parentStyle": true,
 									"left": 216,
-									"top": 864,
+									"top": 840,
 									"width": 364.69775390625,
-									"height": 25,
+									"height": 38,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGVb/DPf36PfHY="
 									},
@@ -4160,7 +4157,7 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 221,
-											"top": 894,
+											"top": 883,
 											"width": 354.69775390625,
 											"height": 13,
 											"text": "+onFileDownloaded(username: String, fileName: String): void",
@@ -4170,7 +4167,7 @@
 									"font": "Arial;13;0",
 									"parentStyle": true,
 									"left": 216,
-									"top": 889,
+									"top": 878,
 									"width": 364.69775390625,
 									"height": 23
 								},
@@ -4219,7 +4216,6 @@
 							"top": 840,
 							"width": 363.69775390625,
 							"height": 72,
-							"stereotypeDisplay": "icon",
 							"nameCompartment": {
 								"$ref": "AAAAAAGVb/DPf36OO5M="
 							},
@@ -4775,8 +4771,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 767,
-									"top": 1232,
+									"left": 768,
+									"top": 1248,
 									"width": 32.880859375,
 									"height": 13,
 									"alpha": 1.5707963267948966,
@@ -4798,8 +4794,8 @@
 									},
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 764,
-									"top": 1247,
+									"left": 765,
+									"top": 1263,
 									"width": 39.7490234375,
 									"height": 13,
 									"alpha": 1.5707963267948966,
@@ -4822,8 +4818,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 784,
-									"top": 1203,
+									"left": 783,
+									"top": 1219,
 									"height": 13,
 									"alpha": -1.5707963267948966,
 									"distance": 15,
@@ -4842,7 +4838,7 @@
 								"$ref": "AAAAAAGVb/AvNX48sv8="
 							},
 							"lineStyle": 1,
-							"points": "784:1287;784:1224;564.592529296875:1220.8994663783483",
+							"points": "784:1287;784:1240;706:1241",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAGW1bzJeZCBmsw="
@@ -6243,7 +6239,8 @@
 							"_parent": {
 								"$ref": "AAAAAAGVcABySdAjGoY="
 							},
-							"name": "credentials.txt"
+							"name": "credentials.txt",
+							"type": ""
 						}
 					]
 				}
