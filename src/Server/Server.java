@@ -1,17 +1,19 @@
 package Server;
 
-import Server.observers.FileDownloadObserver;
+import Server.observers.DownloadObservable;
+import Server.observers.Observer;
 import Server.observers.LoggerObserver;
 
 import java.io.*;
 import java.net.*;
 import java.util.*;
 
-public class Server {
+// Nel nostro progetto il Server è il nostro Observable (Quindi il soggetto osservato)
+public class Server extends DownloadObservable {
     private static Server instance;
     private ServerSocket serverSocket;
     private int port = 12345;
-    private List<FileDownloadObserver> observers; //TODO: Forse va cambiato in protected, controlla l'observer su slide prof
+    private List<Observer> observers;
     private File credentialsFile;
 
     private Server() {
@@ -39,19 +41,10 @@ public class Server {
         return credentialsFile;
     }
 
-    // Metodi per gestire gli observer
-    public void addObserver(FileDownloadObserver o) {
-        observers.add(o);
-    }
-
-    public void removeObserver(FileDownloadObserver o) {
-        observers.remove(o);
-    }
-
+    // Metodo per notficare il download
     public void notifyDownload(String username, String fileName) {
-        for (FileDownloadObserver o : observers) {
-            o.onFileDownloaded(username, fileName);
-        }
+        setChanged(); // notifica solo se è cambiato
+        notifyObservers(username, fileName);
     }
 
     // Avvia il server in ascolto sulla porta definita

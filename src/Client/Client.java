@@ -63,7 +63,7 @@ public class Client {
                                 byte[] fileBytes = Base64.getDecoder().decode(encoded);
                                 Path outputPath = Paths.get(finalSaveDirectory, fileName);
                                 Files.write(outputPath, fileBytes);
-                                System.out.println("File " + fileName + " salvato localmente.");
+                                System.out.println("File " + fileName + " salvato localmente. Dimensione: " + fileBytes.length + " bytes.");
                             }
                         } else {
                             System.out.println("Server: " + response);
