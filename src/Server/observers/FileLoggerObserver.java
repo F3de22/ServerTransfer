@@ -9,8 +9,8 @@ import java.io.IOException;
 public class FileLoggerObserver implements Observer {
     @Override
     public void onFileDownloaded(String username, String fileName) {
-        // Prima era scritto su LoggerObserver; cos' scriviamo sia su console che su file
-        System.out.println("L'utente " + username + " ha scaricato il file: " + fileName);
+        // Prima era scritto su LoggerObserver; così scriviamo sia su console che su file
+        System.out.println("[DOWNLOAD] L'utente " + username + " ha scaricato il file: " + fileName);
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("download_log.txt", true))) {
             writer.write("Utente " + username + " ha scaricato il file: " + fileName);
@@ -19,4 +19,10 @@ public class FileLoggerObserver implements Observer {
             System.err.println("Errore nel salvataggio del log su file: " + e.getMessage());
         }
     }
+    
+    @Override
+    public void update(String message) {
+        System.out.println("[LOG] " + message);
+    }
+
 }

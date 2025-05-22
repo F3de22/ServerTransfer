@@ -1,33 +1,41 @@
+
 package Server.Commands;
 
 import Server.ClientHandler;
+import Server.observers.DownloadObservable;
+import Server.observers.FileLoggerObserver;
+import Server.observers.LoggerObserver;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.util.Base64;
+import java.io.*;
 
 public class DownloadCommand implements Command {
-    public void execute(ClientHandler handler, String[] args) {
-        if (args.length < 2) {
-            handler.sendMessage("Utilizzo: download <nome_file>");
-            return;
-        }
-        String fileName = args[1];
-        File file = new File(handler.getCurrentDir(), fileName);
-        if (!file.exists() || !file.isFile()) {
-            handler.sendMessage("File non trovato o non è un file.");
-            return;
-        }
+    private File currentDir;
+    private BufferedWriter out;
+    private String fileName;
+
+    public DownloadCommand(File currentDir, BufferedWriter out, String fileName) {
+        this.currentDir = currentDir;
+        this.out = out;
+        this.fileName = fileName;
+    }
+
+    @Override
+    public File execute(ClientHandler handler, String[] args) {
+        File file = new File(currentDir, fileName);
         try {
-            byte[] fileBytes = Files.readAllBytes(file.toPath());
-            String encoded = Base64.getEncoder().encodeToString(fileBytes);
-            // Il messaggio inviato contiene: FILE_CONTENT:nomeFile:contenutoBase64
-            handler.sendMessage("FILE_CONTENT:" + file.getName() + ":" + encoded);
-            // Notifica l'observer del download
-            handler.getServer().notifyDownload(handler.getUsername(), file.getAbsolutePath());
-        } catch (IOException e) {
-            handler.sendMessage("Errore nel download del file: " + e.getMessage());
-        }
+            if (!file.exists()) {
+                out.write("File non trovato.\n");
+                out.flush();
+            } else {
+                out.write("Pronto per il download.\n");
+                out.flush();
+
+                DownloadObservable observable = new DownloadObservable();
+                observable.addObserver(new LoggerObserver());
+                observable.addObserver(new FileLoggerObserver());
+                observable.notifyObservers("User", file.getName());
+            }
+        } catch (IOException ignored) {}
+        return currentDir;
     }
 }

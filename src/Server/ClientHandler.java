@@ -1,114 +1,108 @@
+
 package Server;
 
 import Server.Commands.Command;
 import Server.Commands.CommandFactory;
 
 import java.io.*;
-import java.net.*;
+import java.net.Socket;
 
 public class ClientHandler implements Runnable {
     private Socket clientSocket;
-    private Server server;
-    private BufferedReader in;
-    private PrintWriter out;
-    private String username;
     private File currentDir;
+    private User user;
 
-    public ClientHandler(Socket socket, Server server) {
-        this.clientSocket = socket;
-        this.server = server;
+    public ClientHandler(Socket clientSocket, File rootDir) {
+        this.clientSocket = clientSocket;
+        this.currentDir = rootDir;
     }
 
-    // Metodo per inviare messaggi al client
-    public void sendMessage(String message) {
-        out.println(message);
-    }
-
-    public File getCurrentDir() {
-        return currentDir;
-    }
-
-    public void setCurrentDir(File dir) {
-        this.currentDir = dir;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public Server getServer() {
-        return server;
-    }
-
+	@Override
     public void run() {
-        try {
-            in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-            out = new PrintWriter(clientSocket.getOutputStream(), true);
+        try (
+            BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()))
+        ) {
+        	
+        	UserAuthenticator authenticator = new UserAuthenticator("credentials.txt");
 
-            // AUTENTICAZIONE
-            boolean authenticated = false;
-            while (!authenticated) {
-                out.println("Sei registrato? (si/no):");
-                String risposta = in.readLine();
-                if (risposta == null) break;
-                if (risposta.equalsIgnoreCase("si")) {
-                    out.println("Inserisci username:");
-                    String user = in.readLine();
-                    out.println("Inserisci password:");
-                    String pass = in.readLine();
-                    if (UserAuthenticator.login(user, pass, server.getCredentialsFile())) {
-                        username = user;
-                        authenticated = true;
-                        out.println("Login effettuato con successo!");
-                    } else {
-                        out.println("Credenziali errate.");
-                    }
-                } else {
-                    out.println("Registrazione - Inserisci username:");
-                    String user = in.readLine();
-                    out.println("Inserisci password:");
-                    String pass = in.readLine();
-                    if (UserAuthenticator.register(user, pass, server.getCredentialsFile())) {
-                        username = user;
-                        authenticated = true;
-                        out.println("Registrazione effettuata e login effettuato con successo!");
-                    } else {
-                        out.println("Errore nella registrazione. Username già esistente?");
-                    }
-                }
-            }
+        	boolean authenticated = false;
+        	
+        	while (!authenticated) {
+        		String risposta;
+        		while (true) {
+        		    out.write("Sei registrato? (si/no):\n");
+        		    out.flush();
+        		    risposta = in.readLine();
 
-            // Imposta la directory iniziale SOLO di dove stanno i files e si assicura che la cartella "server_files" esista
-            currentDir = new File("server_files");
-            if (!currentDir.exists()) {
-                currentDir.mkdirs();
-            }
-            out.println("Directory dove si trovano i file: " + currentDir.getAbsolutePath());
+        		    if (risposta == null || risposta.trim().isEmpty()) {
+        		        continue; // premi solo INVIO o invio vuoto allora ripeti
+        		    }
 
-            // GESTIONE DEI COMANDI
-            out.println("Scegli un comando: ");
+        		    if (risposta.equalsIgnoreCase("si") || risposta.equalsIgnoreCase("no")) {
+        		        break; // le uniche risposte valide
+        		    }
+        		}
+
+        	    if (risposta.equalsIgnoreCase("si")) {
+        	        out.write("Inserisci username:\n");
+        	        out.flush();
+        	        String usernameInput = in.readLine();
+
+        	        out.write("Inserisci password:\n");
+        	        out.flush();
+        	        String passwordInput = in.readLine();
+
+        	        user = authenticator.authenticate(usernameInput, passwordInput);
+        	        if (user != null) {
+        	            authenticated = true;
+        	            this.user = user;
+        	            out.write("Login effettuato con successo!\n");
+        	            out.write("Benvenuto " + user.getUsername() + (user.isAdmin() ? " [ADMIN]" : "") + "\n");
+        	            out.flush();
+        	        } else {
+        	            out.write("Credenziali errate.\n");
+        	            out.flush();
+        	        }
+        	    } else {
+        	        out.write("Registrazione - Inserisci username:\n");
+        	        out.flush();
+        	        String newUser = in.readLine();
+
+        	        out.write("Inserisci password:\n");
+        	        out.flush();
+        	        String newPass = in.readLine();
+
+        	        if (authenticator.register(newUser, newPass, false)) { // false → non admin
+        	            user = authenticator.authenticate(newUser, newPass);
+        	            this.user = user;
+        	            authenticated = true;
+        	            out.write("Registrazione completata con successo!\n");
+        	            out.write("Benvenuto " + user.getUsername() + "\n");
+        	            out.flush();
+        	        } else {
+        	            out.write("Errore: username già esistente.\n");
+        	            out.flush();
+        	        }
+        	    }
+        	}
+
             String commandLine;
             while ((commandLine = in.readLine()) != null) {
-                String[] parts = commandLine.split(" ");
-                String commandName = parts[0];
-                if (commandName.equalsIgnoreCase("exit")) {
-                    out.println("Disconnessione...");
-                    break;
-                }
-                // Usa il CommandFactory per ottenere il comando giusto
-                Command command = CommandFactory.getCommand(commandName);
+                String[] parts = commandLine.trim().split("\\s+"); // divide per spazio
+                String cmdName = parts[0];
+                Command command = CommandFactory.getCommand(cmdName, currentDir, out, user.isAdmin());
                 if (command != null) {
-                    command.execute(this, parts);
+                    currentDir = command.execute(this, parts);
                 } else {
-                    out.println("Comando non riconosciuto.");
+                    out.write("Invalid or unauthorized command.\n");
+                    out.flush();
                 }
             }
+
+
         } catch (IOException e) {
-            System.out.println("Errore con client " + clientSocket.getInetAddress() + ": " + e.getMessage());
-        } finally {
-            try {
-                clientSocket.close();
-            } catch (IOException e) { }
+            System.out.println("Client connection error: " + e.getMessage());
         }
     }
 }

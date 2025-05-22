@@ -1,16 +1,38 @@
+
 package Server.Commands;
 
+import java.io.BufferedWriter;
+import java.io.File;
+
 public class CommandFactory {
-    public static Command getCommand(String commandName) {
-        switch (commandName.toLowerCase()) {
+    public static Command getCommand(String commandLine, File currentDir, BufferedWriter out, boolean isAdmin) {
+        String[] parts = commandLine.split(" ");
+        String command = parts[0];
+
+        switch (command.toLowerCase()) {
             case "list":
-                return new ListCommand();
+                return new ListCommand(currentDir, out);
             case "cd":
-                return new CdCommand();
+                if (parts.length > 1) {
+                    return new CdCommand(currentDir, out, parts[1]);
+                }
+                break;
             case "download":
-                return new DownloadCommand();
-            default:
-                return null;
+                if (parts.length > 1) {
+                    return new DownloadCommand(currentDir, out, parts[1]);
+                }
+                break;
+            case "upload":
+                if (isAdmin && parts.length > 1) {
+                    return new UploadCommand(currentDir, out, parts[1]);
+                }
+                break;
+            case "delete":
+                if (isAdmin && parts.length > 1) {
+                    return new DeleteCommand(currentDir, out, parts[1]);
+                }
+                break;
         }
+        return null;
     }
 }

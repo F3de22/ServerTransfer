@@ -1,23 +1,23 @@
 package Server;
 
 import Server.observers.DownloadObservable;
-import Server.observers.Observer;
+//import Server.observers.Observer;
 import Server.observers.LoggerObserver;
 
 import java.io.*;
 import java.net.*;
-import java.util.*;
+//import java.util.*;
 
 // Nel nostro progetto il Server è il nostro Observable (Quindi il soggetto osservato)
 public class Server extends DownloadObservable {
     private static Server instance;
     private ServerSocket serverSocket;
     private int port = 12345;
-    private List<Observer> observers;
+    //private List<Observer> observers;
     private File credentialsFile;
 
     private Server() {
-        observers = new ArrayList<>();
+        //observers = new ArrayList<>();
         credentialsFile = new File("credentials.txt");
         // Se il file delle credenziali non esiste, lo crea
         try {
@@ -43,7 +43,6 @@ public class Server extends DownloadObservable {
 
     // Metodo per notficare il download
     public void notifyDownload(String username, String fileName) {
-        setChanged(); // notifica solo se è cambiato
         notifyObservers(username, fileName);
     }
 
@@ -53,10 +52,10 @@ public class Server extends DownloadObservable {
             serverSocket = new ServerSocket(port);
             System.out.println("Server avviato sulla porta " + port);
             while (true) {
-                Socket clientSocket = serverSocket.accept();
+                Socket clientSocket = serverSocket.accept(); // <--- riceve la connessione da Client.java
                 System.out.println("Nuovo client connesso: " + clientSocket.getInetAddress());
-                // Per ogni client viene creato un ClientHandler in un nuovo thread
-                ClientHandler handler = new ClientHandler(clientSocket, this);
+                File rootDir = new File("server_files"); // Directory di base
+                ClientHandler handler = new ClientHandler(clientSocket, rootDir); // Per ogni client viene creato un ClientHandler in un nuovo thread
                 new Thread(handler).start();
             }
         } catch (IOException e) {
@@ -72,8 +71,8 @@ public class Server extends DownloadObservable {
 
     public static void main(String[] args) {
         Server server = Server.getInstance();
-        // Aggiungo un observer per il logging dei download
-        server.addObserver(new LoggerObserver());
+        
+        server.addObserver(new LoggerObserver()); // Aggiungo un observer per il logging dei download
         server.start();
     }
 }

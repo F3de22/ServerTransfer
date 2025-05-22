@@ -1,7 +1,9 @@
 package Server.Commands;
 
+import java.io.File;
+
 import Server.ClientHandler;
 
 public interface Command {
-    void execute(ClientHandler handler, String[] args);
+    File execute(ClientHandler handler, String[] args);
 }
