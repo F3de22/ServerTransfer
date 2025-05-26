@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+  <component name="ModuleManager">
+    <modules>
+      <module name="ServerTransfer" dirurl="file://$PROJECT_DIR$/.idea" current-layer="Default">
+        <module-layer name="Default">
+          <extension id="java" sdk-name="24.0" language-level-name="JDK_21" />
+          <content url="file://$MODULE_DIR$/.." />
+          <orderEntry type="module-extension-sdk" extension-id="java" />
+          <orderEntry type="sourceFolder" />
+        </module-layer>
+      </module>
+    </modules>
+  </component>
+</project>
