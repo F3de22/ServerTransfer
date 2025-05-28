@@ -56,7 +56,6 @@ public class ClientHandler implements Runnable {
 				while (true) {
 					sendMessage("Sei registrato? (si/no):");
 					risposta = in.readLine();
-					System.out.println("Risposta ricevuta: " + risposta); // 👈 AGGIUNGI QUESTO
 
 					if (risposta == null || risposta.trim().isEmpty()) continue;
 

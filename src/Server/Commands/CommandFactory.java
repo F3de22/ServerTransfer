@@ -32,6 +32,8 @@ public class CommandFactory {
                     return new DeleteCommand(currentDir, parts[1]);
                 }
                 break;
+            case "exit":
+                break;
         }
         return null;
     }
