@@ -20,10 +20,11 @@ public class Client {
         System.out.println(" \\$$    $$ \\$$     \\| $$         \\$$$    \\$$     \\| $$      | $$ | $$      \\$$    $$| $$  | $$|       $$| $$      \\$$     \\| $$      ");
         System.out.println("  \\$$$$$$   \\$$$$$$$ \\$$          \\$      \\$$$$$$$ \\$$       \\$$  \\$$       \\$$$$$$$ \\$$   \\$$ \\$$$$$$$  \\$$       \\$$$$$$$ \\$$      ");
 
-        try (Socket socket = new Socket(serverAddress, port);
-             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-             BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in))) {
+        try {
+            Socket socket = new Socket(serverAddress, port);
+            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+            BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
 
             System.out.println("Client connesso al server.\n\n");
 
@@ -67,10 +68,10 @@ public class Client {
             System.out.println("Cartella di default: ~\\ServerTransfer\\downloaded_files");
             String saveDirectory = stdIn.readLine();
             if (saveDirectory == null || saveDirectory.trim().isEmpty()) {
-                Path path = Paths.get(".");
-                saveDirectory = path.toAbsolutePath().normalize() + "\\downloaded_files";
+                Path defaultPath = Paths.get(System.getProperty("user.home"), "Documenti", "GitHub", "ServerTransfer", "downloaded_files");
+                saveDirectory = defaultPath.toString();
             }
-            final String finalSaveDirectory = saveDirectory;
+            final Path finalSaveDirectory = Paths.get(saveDirectory).toAbsolutePath();
 
             System.out.println("Esegui comando: "); // prompt iniziale dopo setup
 
@@ -85,12 +86,13 @@ public class Client {
                                 String fileName = parts[1];
                                 String encoded = parts[2];
                                 byte[] fileBytes = Base64.getDecoder().decode(encoded);
-                                Path outputPath = Paths.get(finalSaveDirectory, fileName);
+                                Path outputPath = finalSaveDirectory.resolve(fileName);
                                 Files.write(outputPath, fileBytes);
                                 System.out.println("File " + fileName + " salvato localmente. Dimensione: " + fileBytes.length + " bytes.");
                                 System.out.println("Esegui comando:");
                             }
-                        } else {
+                        }
+                        else {
                             if (!response.trim().isEmpty()) {
                                 System.out.println("Server: " + response);
                             }
@@ -104,7 +106,6 @@ public class Client {
                     System.out.println("Connessione chiusa dal server.");
                 }
             });
-
 
             listener.start();
 

@@ -40,11 +40,12 @@ public class DownloadCommand implements Command {
                 observable.addObserver(new FileLoggerObserver());
                 observable.notifyObservers(handler.getUsername(), file.getName());
             } catch (Exception e) {
-                System.err.println("Errore logging: " + e.getMessage());
+                System.err.println("Errore nel logging degli observers: " + e.getMessage());
             }
 
         } catch (IOException e) {
             handler.sendMessage("Errore nel download del file: " + e.getMessage());
+            e.printStackTrace(); // stampa lato server
         }
 
         return currentDir;
