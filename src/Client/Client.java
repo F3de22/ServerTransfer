@@ -26,7 +26,7 @@ public class Client {
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
             BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
 
-            System.out.println("Client connesso al server.\n\n");
+            System.out.println("\nClient connesso al server.\n\n");
 
             // Gestione login iniziale (sincrona)
             boolean isAdmin = false;
@@ -64,21 +64,47 @@ public class Client {
             System.out.println(" |- exit: Comando per chiudere la sessione del client;              |");
             System.out.println(" |------------------------------------------------------------------|");
 
-            System.out.println("\nInserisci il percorso della cartella dove salvare i file scaricati (lascia vuoto per usare la cartella di default):");
+            /*System.out.println("\nInserisci il percorso della cartella dove salvare i file scaricati (lascia vuoto per usare la cartella di default):");
             System.out.println("Cartella di default: ~\\ServerTransfer\\downloaded_files");
             String saveDirectory = stdIn.readLine();
             if (saveDirectory == null || saveDirectory.trim().isEmpty()) {
                 Path defaultPath = Paths.get(System.getProperty("user.home"), "Documenti", "GitHub", "ServerTransfer", "downloaded_files");
                 saveDirectory = defaultPath.toString();
             }
-            final Path finalSaveDirectory = Paths.get(saveDirectory).toAbsolutePath();
+            final Path finalSaveDirectory = Paths.get(saveDirectory).toAbsolutePath();*/
+            
+            Path finalSaveDirectory;
 
-            System.out.println("Esegui comando: "); // prompt iniziale dopo setup
+            while (true) {
+                System.out.println("\nInserisci il percorso della cartella dove salvare i file scaricati (lascia vuoto per usare la cartella di default):");
+                System.out.println("Cartella di default: ~\\ServerTransfer\\downloaded_files");
+                String saveDirectory = stdIn.readLine();
 
+                if (saveDirectory == null || saveDirectory.trim().isEmpty()) {
+                    Path defaultPath = Paths.get(System.getProperty("user.home"), "Documenti", "GitHub", "ServerTransfer", "downloaded_files");
+                    finalSaveDirectory = defaultPath.toAbsolutePath();
+                } else {
+                    finalSaveDirectory = Paths.get(saveDirectory).toAbsolutePath();
+                }
+
+                if (Files.exists(finalSaveDirectory) && Files.isDirectory(finalSaveDirectory)) {
+                    break; // directory valida
+                } else {
+                    System.out.println("La directory specificata non esiste. Riprova.");
+                }
+            }
+            
+            // Assegno finalSaveDirectory cosi che creo una variabile final per usarla nella lambda del listener
+            final Path saveDir = finalSaveDirectory;  
+
+            System.out.println("Esegui comando: "); // prompt iniziale
+            
+            final StringBuilder lastCommand = new StringBuilder();
+            
             // Listener asincrono per messaggi e file
             Thread listener = new Thread(() -> {
-                String response;
                 try {
+                    String response;
                     while ((response = in.readLine()) != null) {
                         if (response.startsWith("FILE_CONTENT:")) {
                             String[] parts = response.split(":", 3);
@@ -86,17 +112,31 @@ public class Client {
                                 String fileName = parts[1];
                                 String encoded = parts[2];
                                 byte[] fileBytes = Base64.getDecoder().decode(encoded);
-                                Path outputPath = finalSaveDirectory.resolve(fileName);
+                                Path outputPath = saveDir.resolve(fileName);
                                 Files.write(outputPath, fileBytes);
                                 System.out.println("File " + fileName + " salvato localmente. Dimensione: " + fileBytes.length + " bytes.");
                                 System.out.println("Esegui comando:");
                             }
-                        }
-                        else {
+                        } else if (response.equalsIgnoreCase("Pronto per ricevere il file.")) {
+                            String[] parts = lastCommand.toString().split("\\s+", 2);
+                            if (parts.length == 2) {
+                                File fileToSend = new File(parts[1]);
+                                if (fileToSend.exists()) {
+                                    String fileName = fileToSend.getName();
+                                    byte[] fileBytes = Files.readAllBytes(fileToSend.toPath());
+                                    String encoded = Base64.getEncoder().encodeToString(fileBytes);
+                                    out.println("FILE_UPLOAD:" + fileName + ":" + encoded);
+                                    System.out.println("Esegui comando:");
+                                } else {
+                                    System.out.println("File non trovato: " + fileToSend.getAbsolutePath());
+                                }
+                            } else {
+                                System.out.println("Percorso file non specificato.");
+                            }
+                        } else {
                             if (!response.trim().isEmpty()) {
                                 System.out.println("Server: " + response);
                             }
-                            // Solo se non ci sono altre righe in arrivo, mostra il prompt
                             if (!in.ready()) {
                                 System.out.println("\nEsegui comando:");
                             }
@@ -109,9 +149,11 @@ public class Client {
 
             listener.start();
 
-            // Loop dei comandi da tastiera
+            // Loop dei comandi di input
             String userInput;
             while ((userInput = stdIn.readLine()) != null) {
+            	lastCommand.setLength(0); // Ripulisce dopo ogni comando             
+                lastCommand.append(userInput);         
                 out.println(userInput);
                 if (userInput.equalsIgnoreCase("exit")) break;
             }

@@ -9,6 +9,7 @@ import java.net.Socket;
 
 public class ClientHandler implements Runnable {
     private Socket clientSocket;
+    private final File rootDir;      // la cartella fissa dei file sul server per l'upload
     private File currentDir;
     private User user;
 	private BufferedReader in;
@@ -17,6 +18,7 @@ public class ClientHandler implements Runnable {
     public ClientHandler(Socket clientSocket, File rootDir) {
         this.clientSocket = clientSocket;
         this.currentDir = rootDir;
+        this.rootDir = rootDir;
     }
 
 	public void sendMessage(String message) {
@@ -27,6 +29,10 @@ public class ClientHandler implements Runnable {
 			System.err.println("Errore nell'invio al client: " + e.getMessage());
 		}
 	}
+	
+	public File getRootDir() {
+        return rootDir;
+    }
 
 	public File getCurrentDir() {
 		return currentDir;
@@ -39,7 +45,14 @@ public class ClientHandler implements Runnable {
 	public String getUsername() {
 		return user != null ? user.getUsername() : "User non valido";
 	}
-
+	
+	public BufferedReader getIn() {
+	    return in;
+	}
+	
+	public String readLine() throws IOException {
+	    return in.readLine();
+	}
 
 	@Override
     public void run() {

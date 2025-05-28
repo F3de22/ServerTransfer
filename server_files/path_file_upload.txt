@@ -1,0 +1,3 @@
+upload_to_folder\domande_orale_fisica_2.docx
+
+upload_to_folder\upload_test.txt

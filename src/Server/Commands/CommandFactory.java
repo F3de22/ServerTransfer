@@ -1,7 +1,5 @@
 package Server.Commands;
 
-import Server.ClientHandler;
-
 import java.io.File;
 
 public class CommandFactory {
@@ -24,7 +22,7 @@ public class CommandFactory {
                 break;
             case "upload":
                 if (isAdmin && parts.length > 1) {
-                    return new UploadCommand(currentDir, parts[1]);
+                	return new UploadCommand(parts[1]);
                 }
                 break;
             case "delete":
