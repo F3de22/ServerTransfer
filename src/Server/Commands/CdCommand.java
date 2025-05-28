@@ -1,24 +1,18 @@
-
 package Server.Commands;
 
 import Server.ClientHandler;
-
 import Server.observers.FileLoggerObserver;
 import Server.observers.LoggerObserver;
 import Server.observers.UserActionObservable;
 
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.IOException;
 
 public class CdCommand implements Command {
-    private File currentDir;
-    private BufferedWriter out;
-    private String dirName;
+    private final File currentDir;
+    private final String dirName;
 
-    public CdCommand(File currentDir, BufferedWriter out, String dirName) {
+    public CdCommand(File currentDir, String dirName) {
         this.currentDir = currentDir;
-        this.out = out;
         this.dirName = dirName;
     }
 
@@ -26,21 +20,19 @@ public class CdCommand implements Command {
     public File execute(ClientHandler handler, String[] args) {
         File newDir = new File(currentDir, dirName);
         if (newDir.exists() && newDir.isDirectory()) {
+            handler.sendMessage("Directory cambiata in: " + newDir.getName());
             try {
-                out.write("Directory cambiata in: " + newDir.getName() + "\n");
-                out.flush();
                 UserActionObservable observable = new UserActionObservable();
                 observable.addObserver(new LoggerObserver());
                 observable.addObserver(new FileLoggerObserver());
                 observable.notifyObservers("L'utente ha cambiato la directory in: " + newDir.getAbsolutePath());
-                return newDir;
-            } catch (IOException ignored) {}
+            } catch (Exception e) {
+                System.err.println("Errore logging cd: " + e.getMessage());
+            }
+            return newDir;
         } else {
-            try {
-                out.write("Directory non trovata.\n");
-                out.flush();
-            } catch (IOException ignored) {}
+            handler.sendMessage("Directory non trovata.");
+            return currentDir;
         }
-        return currentDir;
     }
 }

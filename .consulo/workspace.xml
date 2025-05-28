@@ -1,13 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
   <component name="ChangeListManager">
-    <list default="true" id="58ebbb8f-ede4-48de-9e26-7ff3a3f88450" name="Default" comment="" />
+    <list default="true" id="58ebbb8f-ede4-48de-9e26-7ff3a3f88450" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.consulo/misc.xml" afterPath="$PROJECT_DIR$/.consulo/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.consulo/modules.xml" afterPath="$PROJECT_DIR$/.consulo/modules.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.consulo/workspace.xml" afterPath="$PROJECT_DIR$/.consulo/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="EditorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/Server/ClientHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="484">
+          <caret line="26" column="60" lean-forward="false" selection-start-line="26" selection-start-column="60" selection-end-line="26" selection-end-column="60" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Server/Server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="748">
+          <caret line="34" column="36" lean-forward="false" selection-start-line="34" selection-start-column="36" selection-end-line="34" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Client/Client.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="1" column="8" lean-forward="false" selection-start-line="1" selection-start-column="8" selection-end-line="1" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="Client.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Client/Client.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="22">
+              <caret line="1" column="8" lean-forward="false" selection-start-line="1" selection-start-column="8" selection-end-line="1" selection-end-column="8" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Server.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Server/Server.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="748">
+              <caret line="34" column="36" lean-forward="false" selection-start-line="34" selection-start-column="36" selection-end-line="34" selection-end-column="36" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ClientHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Server/ClientHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="484">
+              <caret line="26" column="60" lean-forward="false" selection-start-line="26" selection-start-column="60" selection-end-line="26" selection-end-column="60" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -35,7 +112,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -43,14 +119,185 @@
               <item name="ServerTransfer" type="dc9f28ed:ProjectViewProjectNode" />
               <item name="ServerTransfer" type="8337b015:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="ServerTransfer" type="dc9f28ed:ProjectViewProjectNode" />
+              <item name="ServerTransfer" type="8337b015:PsiDirectoryNode" />
+              <item name="src" type="8337b015:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ServerTransfer" type="dc9f28ed:ProjectViewProjectNode" />
+              <item name="ServerTransfer" type="8337b015:PsiDirectoryNode" />
+              <item name="src" type="8337b015:PsiDirectoryNode" />
+              <item name="Client" type="8337b015:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ServerTransfer" type="dc9f28ed:ProjectViewProjectNode" />
+              <item name="ServerTransfer" type="8337b015:PsiDirectoryNode" />
+              <item name="src" type="8337b015:PsiDirectoryNode" />
+              <item name="Server" type="8337b015:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="restartRequiresConfirmation" value="true" />
+    <property name="options.lastSelected" value="project.libraries" />
+  </component>
+  <component name="RunManager" selected="Java Application.Client">
+    <configuration default="false" name="Server" type="JavaApplication" factoryName="Java Application" temporary="true" nameIsGenerated="true">
+      <module name="ServerTransfer" />
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="Server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="Server.Server" />
+      <option name="VM_PARAMETERS" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="INCLUDE_PROVIDED_SCOPE" value="false" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <envs />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Client" type="JavaApplication" factoryName="Java Application" temporary="true" nameIsGenerated="true">
+      <module name="ServerTransfer" />
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="Client.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="Client.Client" />
+      <option name="VM_PARAMETERS" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="INCLUDE_PROVIDED_SCOPE" value="false" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <envs />
+      <ConfigurationWrapper RunnerId="Debug" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="true" type="#DotNetConfigurationType" factoryName=".NET Application">
+      <module name="" />
+      <option name="consoleType" value="BUILTIN" />
+      <option name="envs">
+        <map />
+      </option>
+      <option name="name" value="Unnamed" />
+      <option name="passParentEnvs" value="true" />
+      <option name="programParameters" />
+      <option name="saveOutputToFile" value="false" />
+      <option name="showConsoleOnStdErr" value="false" />
+      <option name="showConsoleOnStdOut" value="false" />
+      <option name="workingDirectory" />
+      <coverage enabled="false" sample_coverage="true" />
+      <method />
+    </configuration>
+    <configuration default="true" type="#NUnitConfigurationType" factoryName="#NUnitConfigurationType">
+      <module name="" />
+      <coverage enabled="false" sample_coverage="true" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <module name="" />
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="true" type="JarApplication" factoryName="JAR Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaApplication" factoryName="Java Application">
+      <module name="" />
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="INCLUDE_PROVIDED_SCOPE" value="false" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpScriptConfigurationType" factoryName="PhpScriptConfigurationType">
+      <module name="" />
+      <option name="SCRIPT_PATH" />
+      <option name="PROGRAM_ARGUMENTS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <method />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <module name="" />
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+      <method />
+    </configuration>
+    <list size="2">
+      <item index="0" class="java.lang.String" itemvalue="Java Application.Server" />
+      <item index="1" class="java.lang.String" itemvalue="Java Application.Client" />
+    </list>
+    <recent_temporary>
+      <list size="2">
+        <item index="0" class="java.lang.String" itemvalue="Java Application.Client" />
+        <item index="1" class="java.lang.String" itemvalue="Java Application.Server" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="ServiceViewManager">
     <option name="viewStates">
@@ -74,33 +321,44 @@
       <workItem from="1748182280818" duration="52000" />
       <workItem from="1748184120669" duration="275000" />
       <workItem from="1748184643612" duration="304000" />
+      <workItem from="1748263187070" duration="1069000" />
+      <workItem from="1748264267673" duration="277000" />
+      <workItem from="1748264640081" duration="71000" />
+      <workItem from="1748264717280" duration="989000" />
+      <workItem from="1748265723809" duration="337000" />
+      <workItem from="1748266313142" duration="368000" />
+      <workItem from="1748266691601" duration="94000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="631000" />
+    <option name="totallyTimeSpent" value="3836000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1819" y="621" width="2560" height="1396" extended-state="6" />
+    <frame x="1280" y="0" width="2560" height="1396" extended-state="6" />
     <layout>
       <window_info id="Services" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32924107" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13931145" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.084067255" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Bookmarks" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32921174" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Time Tracking" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Notifications" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Apache Ant" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="myTodoPanelSettings">
@@ -108,21 +366,102 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state x="1554" y="406" key="FileChooserDialogImpl" timestamp="1748184672592">
+    <state x="981" y="342" key="#Client" timestamp="1748265040443">
       <screen x="0" y="0" width="2560" height="1396" />
     </state>
-    <state x="1554" y="406" key="FileChooserDialogImpl/0.0.2560.1396@0.0.2560.1396" timestamp="1748184672592" />
-    <state x="1306" y="410" width="1028" height="500" key="OptionsEditor" timestamp="1748184683113">
+    <state x="981" y="342" key="#Client/0.0.2560.1396@0.0.2560.1396" timestamp="1748265040443" />
+    <state x="981" y="347" key="#Client_(1)" timestamp="1748266050415">
       <screen x="0" y="0" width="2560" height="1396" />
     </state>
-    <state x="1306" y="410" width="1028" height="500" key="OptionsEditor/0.0.2560.1396@0.0.2560.1396" timestamp="1748184683113" />
+    <state x="981" y="347" key="#Client_(1)/0.0.2560.1396@0.0.2560.1396" timestamp="1748266050415" />
+    <state x="981" y="347" key="#Client_(2)" timestamp="1748264838985">
+      <screen x="0" y="0" width="2560" height="1396" />
+    </state>
+    <state x="981" y="347" key="#Client_(2)/0.0.2560.1396@0.0.2560.1396" timestamp="1748264838985" />
+    <state x="981" y="347" key="#Server" timestamp="1748263945149">
+      <screen x="0" y="0" width="2560" height="1396" />
+    </state>
+    <state x="981" y="347" key="#Server/0.0.2560.1396@0.0.2560.1396" timestamp="1748263945149" />
+    <state x="981" y="342" key="#Server_(1)" timestamp="1748263954221">
+      <screen x="0" y="0" width="2560" height="1396" />
+    </state>
+    <state x="981" y="342" key="#Server_(1)/0.0.2560.1396@0.0.2560.1396" timestamp="1748263954221" />
+    <state x="981" y="342" key="#Server_(2)" timestamp="1748263996648">
+      <screen x="0" y="0" width="2560" height="1396" />
+    </state>
+    <state x="981" y="342" key="#Server_(2)/0.0.2560.1396@0.0.2560.1396" timestamp="1748263996648" />
+    <state x="1021" y="489" key="#com.intellij.java.impl.codeInsight.PackageChooserDialog" timestamp="1748264990056">
+      <screen x="0" y="0" width="2560" height="1396" />
+    </state>
+    <state x="1021" y="489" key="#com.intellij.java.impl.codeInsight.PackageChooserDialog/0.0.2560.1396@0.0.2560.1396" timestamp="1748264990056" />
+    <state x="1247" y="542" key="#consulo.ide.impl.idea.ide.util.TreeClassChooserDialog" timestamp="1748265015449">
+      <screen x="0" y="0" width="2560" height="1396" />
+    </state>
+    <state x="1247" y="542" key="#consulo.ide.impl.idea.ide.util.TreeClassChooserDialog/0.0.2560.1396@0.0.2560.1396" timestamp="1748265015449" />
+    <state x="1192" y="543" key="DetectedRootsChooserDialog" timestamp="1748265958689">
+      <screen x="0" y="0" width="2560" height="1396" />
+    </state>
+    <state x="1192" y="543" key="DetectedRootsChooserDialog/0.0.2560.1396@0.0.2560.1396" timestamp="1748265958689" />
+    <state x="1554" y="406" key="FileChooserDialogImpl" timestamp="1748266670242">
+      <screen x="0" y="0" width="2560" height="1396" />
+    </state>
+    <state x="1554" y="406" key="FileChooserDialogImpl/0.0.2560.1396@0.0.2560.1396" timestamp="1748266670242" />
+    <state width="2288" height="396" key="GridCell.Tab.0.bottom" timestamp="1748266785317">
+      <screen x="0" y="0" width="2560" height="1396" />
+    </state>
+    <state width="2288" height="396" key="GridCell.Tab.0.bottom/0.0.2560.1396@0.0.2560.1396" timestamp="1748266785317" />
+    <state width="2288" height="396" key="GridCell.Tab.0.center" timestamp="1748266785317">
+      <screen x="0" y="0" width="2560" height="1396" />
+    </state>
+    <state width="2288" height="396" key="GridCell.Tab.0.center/0.0.2560.1396@0.0.2560.1396" timestamp="1748266785317" />
+    <state width="2288" height="396" key="GridCell.Tab.0.left" timestamp="1748266785317">
+      <screen x="0" y="0" width="2560" height="1396" />
+    </state>
+    <state width="2288" height="396" key="GridCell.Tab.0.left/0.0.2560.1396@0.0.2560.1396" timestamp="1748266785317" />
+    <state width="2288" height="396" key="GridCell.Tab.0.right" timestamp="1748266785317">
+      <screen x="0" y="0" width="2560" height="1396" />
+    </state>
+    <state width="2288" height="396" key="GridCell.Tab.0.right/0.0.2560.1396@0.0.2560.1396" timestamp="1748266785317" />
+    <state x="1532" y="508" key="IdeErrosDialog" timestamp="1748266498649">
+      <screen x="0" y="0" width="2560" height="1396" />
+    </state>
+    <state x="1532" y="508" key="IdeErrosDialog/0.0.2560.1396@0.0.2560.1396" timestamp="1748266498649" />
+    <state x="1031" y="464" key="NewProjectDialog" timestamp="1748264757218">
+      <screen x="0" y="0" width="2560" height="1396" />
+    </state>
+    <state x="1031" y="464" key="NewProjectDialog/0.0.2560.1396@0.0.2560.1396" timestamp="1748264757218" />
+    <state x="503" y="621" width="1918" height="500" key="OptionsEditor" timestamp="1748266756150">
+      <screen x="0" y="0" width="2560" height="1396" />
+    </state>
+    <state x="503" y="621" width="1918" height="500" key="OptionsEditor/0.0.2560.1396@0.0.2560.1396" timestamp="1748266756150" />
+    <state x="905" y="448" width="1202" height="602" key="consulo.execution.impl.internal.ui.EditConfigurationsDialog" timestamp="1748266057634">
+      <screen x="0" y="0" width="2560" height="1396" />
+    </state>
+    <state x="905" y="448" width="1202" height="602" key="consulo.execution.impl.internal.ui.EditConfigurationsDialog/0.0.2560.1396@0.0.2560.1396" timestamp="1748266057634" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+    <option name="MODULE_GROUPING" value="false" />
+  </component>
   <component name="masterDetails">
     <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.43933055" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
       <state key="Copyright.UI">
         <settings>
           <splitter-proportions>
@@ -143,6 +482,17 @@
                 <option value="0.43933055" />
                 <option value="0.6" />
                 <option value="0.5" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.43933055" />
               </list>
             </option>
           </splitter-proportions>

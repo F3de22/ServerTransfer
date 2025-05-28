@@ -1,41 +1,37 @@
-
+// UploadCommand.java
 package Server.Commands;
 
 import Server.ClientHandler;
 import Server.observers.AdminActionObservable;
 import Server.observers.FileLoggerObserver;
+import Server.observers.LoggerObserver;
 
-import java.io.*;
+import java.io.File;
 
 public class UploadCommand implements Command {
-    private File currentDir;
-    private BufferedWriter out;
-    private String fileName;
+    private final File currentDir;
+    private final String fileName;
 
-    public UploadCommand(File currentDir, BufferedWriter out, String fileName) {
+    public UploadCommand(File currentDir, String fileName) {
         this.currentDir = currentDir;
-        this.out = out;
         this.fileName = fileName;
     }
 
     @Override
     public File execute(ClientHandler handler, String[] args) {
-        try {
-            File file = new File(currentDir, fileName);
-            if (file.exists()) {
-                out.write("Il File esiste già sul server.\n");
-            } else {
-                out.write("Pronto per ricevere il file.\n");
-                out.flush();
-                // Logging dell'azione admin
+        File file = new File(currentDir, fileName);
+        if (file.exists()) {
+            handler.sendMessage("Il file esiste già sul server.");
+        } else {
+            handler.sendMessage("Pronto per ricevere il file.");
+            try {
                 AdminActionObservable observable = new AdminActionObservable();
                 observable.addObserver(new FileLoggerObserver());
+                observable.addObserver(new LoggerObserver());
                 observable.notifyObservers("Admin ha fatto l'upload del file: " + file.getAbsolutePath());
+            } catch (Exception e) {
+                System.err.println("Errore logging upload: " + e.getMessage());
             }
-        } catch (IOException e) {
-            try {
-                out.write("Errore: " + e.getMessage() + "\n");
-            } catch (IOException ignored) {}
         }
         return currentDir;
     }

@@ -1,42 +1,38 @@
-
 package Server.Commands;
 
 import Server.ClientHandler;
 import Server.observers.AdminActionObservable;
 import Server.observers.FileLoggerObserver;
+import Server.observers.LoggerObserver;
 
-import java.io.*;
+import java.io.File;
 
 public class DeleteCommand implements Command {
-    private File currentDir;
-    private BufferedWriter out;
-    private String fileName;
+    private final File currentDir;
+    private final String fileName;
 
-    public DeleteCommand(File currentDir, BufferedWriter out, String fileName) {
+    public DeleteCommand(File currentDir, String fileName) {
         this.currentDir = currentDir;
-        this.out = out;
         this.fileName = fileName;
     }
 
     @Override
     public File execute(ClientHandler handler, String[] args) {
-        try {
-            File file = new File(currentDir, fileName);
-            if (!file.exists()) {
-                out.write("File non trovato.\n");
-            } else if (file.delete()) {
-                out.write("File eliminato.\n");
+        File file = new File(currentDir, fileName);
+        if (!file.exists()) {
+            handler.sendMessage("File non trovato.");
+        } else if (file.delete()) {
+            handler.sendMessage("File eliminato.");
+            try {
                 AdminActionObservable observable = new AdminActionObservable();
                 observable.addObserver(new FileLoggerObserver());
+                observable.addObserver(new LoggerObserver());
                 observable.notifyObservers("Admin ha eliminato il file: " + file.getAbsolutePath());
-            } else {
-                out.write("Tentativo di eliminazione del file fallito.\n");
+            } catch (Exception e) {
+                System.err.println("Errore logging delete: " + e.getMessage());
             }
-            out.flush();
-        } catch (IOException e) {
-            try {
-                out.write("Errore: " + e.getMessage() + "\n");
-            } catch (IOException ignored) {}
+        } else {
+            handler.sendMessage("Tentativo di eliminazione fallito.");
         }
         return currentDir;
     }

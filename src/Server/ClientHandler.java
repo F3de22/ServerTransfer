@@ -11,40 +11,61 @@ public class ClientHandler implements Runnable {
     private Socket clientSocket;
     private File currentDir;
     private User user;
+	private BufferedReader in;
+	private BufferedWriter out;
 
     public ClientHandler(Socket clientSocket, File rootDir) {
         this.clientSocket = clientSocket;
         this.currentDir = rootDir;
     }
 
+	public void sendMessage(String message) {
+		try {
+			out.write(message + "\n");
+			out.flush();
+		} catch (IOException e) {
+			System.err.println("Errore nell'invio al client: " + e.getMessage());
+		}
+	}
+
+	public File getCurrentDir() {
+		return currentDir;
+	}
+
+	public void setCurrentDir(File dir) {
+		this.currentDir = dir;
+	}
+
+	public String getUsername() {
+		return user != null ? user.getUsername() : "User non valido";
+	}
+
+
 	@Override
     public void run() {
-        try (
-            BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()))
-        ) {
-        	
-        	UserAuthenticator authenticator = new UserAuthenticator("credentials.txt");
+        try {
+            this.in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            this.out = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
+
+			UserAuthenticator authenticator = new UserAuthenticator("credentials.txt");
 
         	boolean authenticated = false;
         	
         	while (!authenticated) {
         		String risposta;
-        		while (true) {
-        		    out.write("Sei registrato? (si/no):\n");
-        		    out.flush();
-        		    risposta = in.readLine();
+				while (true) {
+					sendMessage("Sei registrato? (si/no):");
+					risposta = in.readLine();
+					System.out.println("Risposta ricevuta: " + risposta); // 👈 AGGIUNGI QUESTO
 
-        		    if (risposta == null || risposta.trim().isEmpty()) {
-        		        continue; // premi solo INVIO o invio vuoto allora ripeti
-        		    }
+					if (risposta == null || risposta.trim().isEmpty()) continue;
 
-        		    if (risposta.equalsIgnoreCase("si") || risposta.equalsIgnoreCase("no")) {
-        		        break; // le uniche risposte valide
-        		    }
-        		}
+					if (risposta.equalsIgnoreCase("si") || risposta.equalsIgnoreCase("no")) {
+						break;
+					}
+				}
 
-        	    if (risposta.equalsIgnoreCase("si")) {
+				if (risposta.equalsIgnoreCase("si")) {
         	        out.write("Inserisci username:\n");
         	        out.flush();
         	        String usernameInput = in.readLine();
@@ -87,22 +108,20 @@ public class ClientHandler implements Runnable {
         	    }
         	}
 
-            String commandLine;
-            while ((commandLine = in.readLine()) != null) {
-                String[] parts = commandLine.trim().split("\\s+"); // divide per spazio
-                String cmdName = parts[0];
-                Command command = CommandFactory.getCommand(cmdName, currentDir, out, user.isAdmin());
-                if (command != null) {
-                    currentDir = command.execute(this, parts);
-                } else {
-                    out.write("Invalid or unauthorized command.\n");
-                    out.flush();
-                }
-            }
+			String commandLine;
+			while ((commandLine = in.readLine()) != null) {
+				Command command = CommandFactory.getCommand(commandLine.trim(), currentDir, user.isAdmin());
+				if (command != null) {
+					// Dividi la riga in due: comando + argomento
+					String[] parts = commandLine.trim().split("\\s+", 2);
+					currentDir = command.execute(this, parts);
+				} else {
+					sendMessage("Comando non valido oppure non hai l'autorizzazione.");
+				}
+			}
 
-
-        } catch (IOException e) {
-            System.out.println("Client connection error: " + e.getMessage());
+		} catch (IOException e) {
+            System.out.println("Errore di connessione al client: " + e.getMessage());
         }
     }
 }

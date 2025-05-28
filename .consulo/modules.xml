@@ -4,8 +4,10 @@
     <modules>
       <module name="ServerTransfer" dirurl="file://$PROJECT_DIR$/.idea" current-layer="Default">
         <module-layer name="Default">
-          <extension id="java" sdk-name="24.0" language-level-name="JDK_21" />
-          <content url="file://$MODULE_DIR$/.." />
+          <extension id="java" sdk-name="21.0" language-level-name="JDK_22" />
+          <content url="file://$MODULE_DIR$/..">
+            <content-folder type="PRODUCTION" url="file://$MODULE_DIR$/../src" />
+          </content>
           <orderEntry type="module-extension-sdk" extension-id="java" />
           <orderEntry type="sourceFolder" />
         </module-layer>

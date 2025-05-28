@@ -1,4 +1,3 @@
-
 package Server.Commands;
 
 import Server.ClientHandler;
@@ -6,36 +5,48 @@ import Server.observers.DownloadObservable;
 import Server.observers.FileLoggerObserver;
 import Server.observers.LoggerObserver;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.util.Base64;
 
 public class DownloadCommand implements Command {
-    private File currentDir;
-    private BufferedWriter out;
-    private String fileName;
+    private final File currentDir;
+    private final String fileName;
 
-    public DownloadCommand(File currentDir, BufferedWriter out, String fileName) {
+    public DownloadCommand(File currentDir, String fileName) {
         this.currentDir = currentDir;
-        this.out = out;
         this.fileName = fileName;
     }
 
     @Override
     public File execute(ClientHandler handler, String[] args) {
         File file = new File(currentDir, fileName);
-        try {
-            if (!file.exists()) {
-                out.write("File non trovato.\n");
-                out.flush();
-            } else {
-                out.write("Pronto per il download.\n");
-                out.flush();
 
+        try {
+            if (!file.exists() || !file.isFile()) {
+                handler.sendMessage("File non trovato.");
+                return currentDir;
+            }
+
+            byte[] fileBytes = Files.readAllBytes(file.toPath());
+            String encoded = Base64.getEncoder().encodeToString(fileBytes);
+
+            handler.sendMessage("FILE_CONTENT:" + file.getName() + ":" + encoded);
+
+            try {
                 DownloadObservable observable = new DownloadObservable();
                 observable.addObserver(new LoggerObserver());
                 observable.addObserver(new FileLoggerObserver());
-                observable.notifyObservers("User", file.getName());
+                observable.notifyObservers(handler.getUsername(), file.getName());
+            } catch (Exception e) {
+                System.err.println("Errore logging: " + e.getMessage());
             }
-        } catch (IOException ignored) {}
+
+        } catch (IOException e) {
+            handler.sendMessage("Errore nel download del file: " + e.getMessage());
+        }
+
         return currentDir;
     }
 }

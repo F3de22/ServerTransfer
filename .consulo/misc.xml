@@ -21,6 +21,11 @@
   <component name="ModuleManager">
     <modules />
   </component>
+  <component name="NullableNotNullManager">
+    <instrumentedNotNulls>
+      <option value="org.jetbrains.annotations.NotNull" />
+    </instrumentedNotNulls>
+  </component>
   <component name="PropertiesComponent">
     <property name="options.lastSelected" value="platformAndPlugins" />
   </component>
