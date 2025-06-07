@@ -122,7 +122,14 @@ public class ClientHandler implements Runnable {
 
 			String commandLine;
 			while ((commandLine = in.readLine()) != null) {
-				Command command = CommandFactory.getCommand(commandLine.trim(), currentDir, user.isAdmin());
+				String trimmed = commandLine.trim();
+
+				if (trimmed.equalsIgnoreCase("exit")) {
+					sendMessage("Chiusura connessione. Arrivederci!");
+					break;
+				}
+
+				Command command = CommandFactory.getCommand(trimmed, currentDir, user.isAdmin());
 				if (command != null) {
 					// Dividi la riga in due: comando + argomento
 					String[] parts = commandLine.trim().split("\\s+", 2);
@@ -134,6 +141,9 @@ public class ClientHandler implements Runnable {
 
 		} catch (IOException e) {
             System.out.println("Errore di connessione al client: " + e.getMessage());
-        }
+        }finally {
+			// 3) Chiudi risorse al termine del loop
+			try { clientSocket.close(); } catch (IOException ignored) {}
+		}
     }
 }

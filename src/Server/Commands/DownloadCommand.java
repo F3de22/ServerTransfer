@@ -2,7 +2,6 @@ package Server.Commands;
 
 import Server.ClientHandler;
 import Server.observers.DownloadObservable;
-import Server.observers.FileLoggerObserver;
 import Server.observers.LoggerObserver;
 
 import java.io.File;
@@ -37,7 +36,6 @@ public class DownloadCommand implements Command {
             try {
                 DownloadObservable observable = new DownloadObservable();
                 observable.addObserver(new LoggerObserver());
-                observable.addObserver(new FileLoggerObserver());
                 observable.notifyObservers(handler.getUsername(), file.getName());
             } catch (Exception e) {
                 System.err.println("Errore nel logging degli observers: " + e.getMessage());

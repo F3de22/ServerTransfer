@@ -1,7 +1,6 @@
 package Server.Commands;
 
 import Server.ClientHandler;
-import Server.observers.FileLoggerObserver;
 import Server.observers.LoggerObserver;
 import Server.observers.UserActionObservable;
 
@@ -31,7 +30,6 @@ public class ListCommand implements Command {
         try {
             UserActionObservable observable = new UserActionObservable();
             observable.addObserver(new LoggerObserver());
-            observable.addObserver(new FileLoggerObserver());
             observable.notifyObservers("Utente ha visualizzato il contenuto di: " + currentDir.getAbsolutePath());
         } catch (Exception e) {
             System.err.println("Errore logging list: " + e.getMessage());

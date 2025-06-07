@@ -1,7 +1,6 @@
 package Server.Commands;
 
 import Server.ClientHandler;
-import Server.observers.FileLoggerObserver;
 import Server.observers.LoggerObserver;
 import Server.observers.UserActionObservable;
 
@@ -24,7 +23,6 @@ public class CdCommand implements Command {
             try {
                 UserActionObservable observable = new UserActionObservable();
                 observable.addObserver(new LoggerObserver());
-                observable.addObserver(new FileLoggerObserver());
                 observable.notifyObservers("L'utente ha cambiato la directory in: " + newDir.getAbsolutePath());
             } catch (Exception e) {
                 System.err.println("Errore logging cd: " + e.getMessage());

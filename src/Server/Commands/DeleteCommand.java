@@ -2,7 +2,6 @@ package Server.Commands;
 
 import Server.ClientHandler;
 import Server.observers.AdminActionObservable;
-import Server.observers.FileLoggerObserver;
 import Server.observers.LoggerObserver;
 
 import java.io.File;
@@ -25,7 +24,6 @@ public class DeleteCommand implements Command {
             handler.sendMessage("File eliminato.");
             try {
                 AdminActionObservable observable = new AdminActionObservable();
-                observable.addObserver(new FileLoggerObserver());
                 observable.addObserver(new LoggerObserver());
                 observable.notifyObservers("Admin ha eliminato il file: " + file.getAbsolutePath());
             } catch (Exception e) {

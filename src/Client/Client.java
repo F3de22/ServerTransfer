@@ -81,7 +81,7 @@ public class Client {
                 String saveDirectory = stdIn.readLine();
 
                 if (saveDirectory == null || saveDirectory.trim().isEmpty()) {
-                    Path defaultPath = Paths.get(System.getProperty("user.home"), "Documenti", "GitHub", "ServerTransfer", "downloaded_files");
+                    Path defaultPath = Paths.get(System.getProperty("user.home"), "GitHub", "ServerTransfer", "downloaded_files");
                     finalSaveDirectory = defaultPath.toAbsolutePath();
                 } else {
                     finalSaveDirectory = Paths.get(saveDirectory).toAbsolutePath();
@@ -105,7 +105,7 @@ public class Client {
             Thread listener = new Thread(() -> {
                 try {
                     String response;
-                    while ((response = in.readLine()) != null) {
+                    while (!Thread.currentThread().isInterrupted() && (response = in.readLine()) != null) {
                         if (response.startsWith("FILE_CONTENT:")) {
                             String[] parts = response.split(":", 3);
                             if (parts.length == 3) {
@@ -153,9 +153,13 @@ public class Client {
             String userInput;
             while ((userInput = stdIn.readLine()) != null) {
             	lastCommand.setLength(0); // Ripulisce dopo ogni comando             
-                lastCommand.append(userInput);         
+                lastCommand.append(userInput);
                 out.println(userInput);
-                if (userInput.equalsIgnoreCase("exit")) break;
+                if (userInput.equalsIgnoreCase("exit")) {
+                    listener.interrupt();
+                    socket.close();
+                    break;
+                }
             }
 
         } catch (IOException e) {

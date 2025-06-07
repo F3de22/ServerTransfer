@@ -2,7 +2,6 @@ package Server.Commands;
 
 import Server.ClientHandler;
 import Server.observers.AdminActionObservable;
-import Server.observers.FileLoggerObserver;
 import Server.observers.LoggerObserver;
 
 import java.io.*;
@@ -57,7 +56,6 @@ public class UploadCommand implements Command {
 
             // Logging osservatori
             AdminActionObservable obs = new AdminActionObservable();
-            obs.addObserver(new FileLoggerObserver());
             obs.addObserver(new LoggerObserver());
             obs.notifyObservers("Admin ha caricato: " + dest.getAbsolutePath());
 
