@@ -1,4 +1,3 @@
-
 package Server.observers;
 
 import java.util.ArrayList;
