@@ -21,7 +21,7 @@ class ObserverWhiteBoxTest {
         SpyObserver spy = new SpyObserver();
         srv.addObserver(spy);
 
-        srv.notifyDownload("greg", "report.pdf");
+        srv.notifyDownload("utenteTest", "report.pdf");
         assertThat(spy.notified)
                 .as("L’Observer deve essere notificato in caso di download")
                 .isTrue();

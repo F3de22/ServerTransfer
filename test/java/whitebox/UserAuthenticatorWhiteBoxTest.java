@@ -9,7 +9,7 @@ import java.nio.file.*;
 import static org.assertj.core.api.Assertions.*;
 
 class UserAuthenticatorWhiteBoxTest {
-    private static final String CRED_FILE = "test_credentials_wb.txt";
+    private static final String CRED_FILE = "test_credentials_wb.txt"; // Test credenziali per whitebox
     private UserAuthenticator auth;
 
     @BeforeEach
@@ -32,25 +32,25 @@ class UserAuthenticatorWhiteBoxTest {
 
     @Test
     void registerAppendsCorrectLine() throws IOException {
-        auth.register("dave", "pass", true);
+        auth.register("federico", "pass", true);
         String content = Files.readString(Path.of(CRED_FILE));
-        assertThat(content).contains("dave,pass,true");
+        assertThat(content).contains("federico,pass,true");
     }
 
     @Test
     void authenticateReturnsCorrectUserObject() {
-        auth.register("eve", "pw", false);
-        User u = auth.authenticate("eve", "pw");
+        auth.register("samuel", "pw", false);
+        User u = auth.authenticate("samuel", "pw");
         assertThat(u)
                 .satisfies(user -> {
-                    assertThat(user.getUsername()).isEqualTo("eve");
+                    assertThat(user.getUsername()).isEqualTo("samuel");
                     assertThat(user.isAdmin()).isFalse();
                 });
     }
 
     @Test
     void authenticateReturnsNullOnBadPwd() {
-        auth.register("frank", "pwd", false);
-        assertThat(auth.authenticate("frank", "wrong")).isNull();
+        auth.register("egidio", "pwd", false);
+        assertThat(auth.authenticate("egidio", "wrong")).isNull();
     }
 }

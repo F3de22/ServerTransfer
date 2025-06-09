@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class AuthBlackBoxTest {
 
-    private static final String TEST_CRED_FILE = "test_credentials_bb.txt";
+    private static final String TEST_CRED_FILE = "test_credentials_bb.txt"; // Test credenziali per blackbox
     private UserAuthenticator auth;
 
     @BeforeEach
@@ -30,10 +30,10 @@ class AuthBlackBoxTest {
     @Test
     void registerNewUserAndLoginSuccess() {
         // black‑box: uso solo l’API pubblica
-        assertTrue(auth.register("bob", "pwd123", false));
-        User u = auth.authenticate("bob", "pwd123");
+        assertTrue(auth.register("aaa", "pwd123", false));
+        User u = auth.authenticate("aaa", "pwd123");
         assertNotNull(u);
-        assertEquals("bob", u.getUsername());
+        assertEquals("aaa", u.getUsername());
         assertFalse(u.isAdmin());
     }
 
@@ -45,12 +45,12 @@ class AuthBlackBoxTest {
 
     @Test
     void loginWithWrongPasswordFails() {
-        auth.register("carol", "pwd", false);
-        assertNull(auth.authenticate("carol", "wrongpwd"));
+        auth.register("testLogin", "pwd", false);
+        assertNull(auth.authenticate("testLogin", "wrongpwd"));
     }
 
     @Test
     void loginNonexistentUserFails() {
-        assertNull(auth.authenticate("ghost", "nopass"));
+        assertNull(auth.authenticate("pippo", "nopass"));
     }
 }

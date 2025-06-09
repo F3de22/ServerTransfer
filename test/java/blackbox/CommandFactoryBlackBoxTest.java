@@ -31,7 +31,7 @@ class CommandFactoryBlackBoxTest {
 
     @Test
     void unknownCommandsReturnNull() {
-        assertNull(CommandFactory.getCommand("foobar", root, true));
+        assertNull(CommandFactory.getCommand("testcomando", root, true));
         assertNull(CommandFactory.getCommand("", root, false));
     }
 }

@@ -30,35 +30,35 @@ class FileOperationsBlackBoxTest {
 
     @Test
     void downloadCopiesFileForAnyUser() throws Exception {
-        // assicuriamoci che server_files/foo.txt esista
-        Path src = Path.of("server_files/foo.txt");
-        assertTrue(Files.exists(src), "server_files/foo.txt deve esistere per il test");
+        // assicuriamoci che server_files/prova1.txt esista
+        Path src = Path.of("server_files/prova1.txt");
+        assertTrue(Files.exists(src), "server_files/prova1.txt deve esistere per il test");
 
-        Command cmd = CommandFactory.getCommand("download foo.txt", root, false);
+        Command cmd = CommandFactory.getCommand("download prova1.txt", root, false);
         assertNotNull(cmd);
         cmd.execute(user);
 
-        Path dest = Path.of("downloaded_files/foo.txt");
+        Path dest = Path.of("downloaded_files/prova1.txt");
         assertTrue(Files.exists(dest), "Il file dovrebbe essere copiato in downloaded_files");
     }
 
     @Test
     void uploadAddsFileOnlyForAdmin() throws Exception {
-        // prendi un file di test in file_to_upload/bar.txt
-        Path up = Path.of("file_to_upload/bar.txt");
-        assertTrue(Files.exists(up), "file_to_upload/bar.txt deve esistere");
+        // prendi un file di test in file_to_upload/prova2.txt
+        Path up = Path.of("file_to_upload/prova2.txt");
+        assertTrue(Files.exists(up), "file_to_upload/prova2.txt deve esistere");
 
         // upload come admin
-        Command cmdAdmin = CommandFactory.getCommand("upload bar.txt", root, true);
+        Command cmdAdmin = CommandFactory.getCommand("upload prova2.txt", root, true);
         assertNotNull(cmdAdmin);
         cmdAdmin.execute(admin);
-        assertTrue(Files.exists(Path.of("server_files/bar.txt")), "Il file deve finire in server_files");
+        assertTrue(Files.exists(Path.of("server_files/prova2.txt")), "Il file deve finire in server_files");
 
         // pulisco e ricarico
-        Files.deleteIfExists(Path.of("server_files/bar.txt"));
+        Files.deleteIfExists(Path.of("server_files/prova2.txt"));
 
         // upload come utente normale → comando null
-        Command cmdUser = CommandFactory.getCommand("upload bar.txt", root, false);
+        Command cmdUser = CommandFactory.getCommand("upload prova2.txt", root, false);
         assertNull(cmdUser);
     }
 
