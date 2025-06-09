@@ -16,7 +16,7 @@ public class UploadCommand implements Command {
     }
 
     @Override
-    public File execute(ClientHandler handler, String[] args) {
+    public File execute(ClientHandler handler) {
         // Estrai solo il nome del file (Windows o Linux)
         String fileName = new File(clientFilePath).getName();
 

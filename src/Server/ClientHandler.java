@@ -133,7 +133,7 @@ public class ClientHandler implements Runnable {
 				if (command != null) {
 					// Dividi la riga in due: comando + argomento
 					String[] parts = commandLine.trim().split("\\s+", 2);
-					currentDir = command.execute(this, parts);
+					currentDir = command.execute(this);
 				} else {
 					sendMessage("Comando non valido oppure non hai l'autorizzazione.");
 				}

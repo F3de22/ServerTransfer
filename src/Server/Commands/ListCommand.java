@@ -14,7 +14,7 @@ public class ListCommand implements Command {
     }
 
     @Override
-    public File execute(ClientHandler handler, String[] args) {
+    public File execute(ClientHandler handler) {
         File[] files = currentDir.listFiles();
         if (files == null || files.length == 0) {
             handler.sendMessage("La directory è vuota.");

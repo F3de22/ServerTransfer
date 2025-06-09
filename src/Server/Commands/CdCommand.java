@@ -16,7 +16,7 @@ public class CdCommand implements Command {
     }
 
     @Override
-    public File execute(ClientHandler handler, String[] args) {
+    public File execute(ClientHandler handler) {
         File newDir = new File(currentDir, dirName);
         if (newDir.exists() && newDir.isDirectory()) {
             handler.sendMessage("Directory cambiata in: " + newDir.getName());

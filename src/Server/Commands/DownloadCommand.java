@@ -19,7 +19,7 @@ public class DownloadCommand implements Command {
     }
 
     @Override
-    public File execute(ClientHandler handler, String[] args) {
+    public File execute(ClientHandler handler) {
         File file = new File(currentDir, fileName);
 
         try {

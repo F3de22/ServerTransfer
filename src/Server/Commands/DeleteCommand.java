@@ -16,7 +16,7 @@ public class DeleteCommand implements Command {
     }
 
     @Override
-    public File execute(ClientHandler handler, String[] args) {
+    public File execute(ClientHandler handler) {
         File file = new File(currentDir, fileName);
         if (!file.exists()) {
             handler.sendMessage("File non trovato.");
