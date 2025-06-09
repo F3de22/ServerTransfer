@@ -1,2 +1,1 @@
-mvn test       # per far girare solo i test
-mvn verify     # per generare anche il report JaCoCo (se configurato)
+mvn test       # per far girare i test
