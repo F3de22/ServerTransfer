@@ -38,7 +38,7 @@ class FileOperationsBlackBoxTest {
     }
 
     @Test
-    void downloadCommandSendsBase64ContentWithoutMockito() throws Exception {
+    void downloadCommandSendsBase64Content() throws Exception {
         // 1) Assicuriamoci che il file esista
         Path src = Path.of("server_files/file.txt");
         assertTrue(Files.exists(src), "server_files/file.txt deve esistere");
