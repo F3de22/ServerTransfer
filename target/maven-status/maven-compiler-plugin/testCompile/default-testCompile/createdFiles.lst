@@ -1,9 +1,0 @@
-whitebox/UserAuthenticatorWhiteBoxTest.class
-blackbox/FileOperationsBlackBoxTest$1UploadTestHandler.class
-whitebox/ObserverWhiteBoxTest$SpyObserver.class
-blackbox/AuthBlackBoxTest.class
-blackbox/CommandFactoryBlackBoxTest.class
-blackbox/FileOperationsBlackBoxTest.class
-whitebox/ServerWhiteBoxTest.class
-blackbox/FileOperationsBlackBoxTest$ClientHandlerForTesting.class
-whitebox/ObserverWhiteBoxTest.class
