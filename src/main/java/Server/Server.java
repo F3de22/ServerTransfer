@@ -1,6 +1,6 @@
 package Server;
 
-import Server.observers.DownloadObservable;
+import Server.observers.UserActionObservable;
 //import Server.observers.Observer;
 import Server.observers.LoggerObserver;
 
@@ -9,7 +9,7 @@ import java.net.*;
 //import java.util.*;
 
 // Nel nostro progetto il Server è il nostro Observable (Quindi il soggetto osservato)
-public class Server extends DownloadObservable {
+public class Server extends UserActionObservable {
     private static Server instance;
     private ServerSocket serverSocket;
     private int port = 12345;
