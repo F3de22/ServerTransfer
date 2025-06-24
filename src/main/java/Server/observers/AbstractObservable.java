@@ -19,7 +19,7 @@ public abstract class AbstractObservable implements Observable {
     /**
      * Il metodo notify è protetto: solo le sottoclassi dentro il package possono invocarlo.
      * Se un evento invocato è di tipo DownloadInfo allora chiama onFileDownloaded
-     * altrimenti per qualsiasi altro evento chiama o.update(event.toString())
+     * altrimenti per qualsiasi altro evento chiama o.update(event...)
      * E' stato spostato in AbstractObservable (dove prima era in Observable) in modo
      * da restare nascosto a chiunque abbia soltanto un riferimento di tipo Observable.
      */

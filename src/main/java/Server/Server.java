@@ -39,7 +39,8 @@ public class Server extends AbstractObservable {
     }
 
     /** Metodo per notificare il completamento di un download
-     * Viene usata solo per i Test*/
+     * Viene usata solo per i Test
+     * */
     public void notifyDownload(String username, String fileName) {
         notifyObservers(new DownloadInfo(username, fileName));
     }
