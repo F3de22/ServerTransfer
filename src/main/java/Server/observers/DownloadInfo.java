@@ -1,8 +1,5 @@
 package Server.observers;
 
-/**
- * Wrapper per username + fileName.
- */
 public class DownloadInfo {
     private final String username;
     private final String fileName;
