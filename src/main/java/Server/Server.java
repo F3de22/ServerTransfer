@@ -38,7 +38,8 @@ public class Server extends AbstractObservable {
         return credentialsFile;
     }
 
-    /** Metodo per notificare il completamento di un download */
+    /** Metodo per notificare il completamento di un download
+     * Viene usata solo per i Test*/
     public void notifyDownload(String username, String fileName) {
         notifyObservers(new DownloadInfo(username, fileName));
     }
