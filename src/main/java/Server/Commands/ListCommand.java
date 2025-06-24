@@ -30,7 +30,7 @@ public class ListCommand implements Command {
         try {
             UserActionObservable observable = new UserActionObservable();
             observable.addObserver(new LoggerObserver());
-            observable.notifyObservers("Utente ha visualizzato il contenuto di: " + currentDir.getAbsolutePath());
+            observable.notifyUser("Utente ha visualizzato il contenuto di: " + currentDir.getAbsolutePath());
         } catch (Exception e) {
             System.err.println("Errore logging list: " + e.getMessage());
         }

@@ -25,7 +25,7 @@ public class DeleteCommand implements Command {
             try {
                 AdminActionObservable observable = new AdminActionObservable();
                 observable.addObserver(new LoggerObserver());
-                observable.notifyObservers("Admin ha eliminato il file: " + file.getAbsolutePath());
+                observable.notifyAdmin("Admin ha eliminato il file: " + file.getAbsolutePath());
             } catch (Exception e) {
                 System.err.println("Errore logging delete: " + e.getMessage());
             }

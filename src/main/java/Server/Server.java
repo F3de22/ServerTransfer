@@ -1,23 +1,20 @@
 package Server;
 
-import Server.observers.UserActionObservable;
-//import Server.observers.Observer;
+import Server.observers.AbstractObservable;
+import Server.observers.DownloadInfo;
 import Server.observers.LoggerObserver;
 
 import java.io.*;
 import java.net.*;
-//import java.util.*;
 
 // Nel nostro progetto il Server è il nostro Observable (Quindi il soggetto osservato)
-public class Server extends UserActionObservable {
+public class Server extends AbstractObservable {
     private static Server instance;
     private ServerSocket serverSocket;
     private int port = 12345;
-    //private List<Observer> observers;
     private File credentialsFile;
 
     private Server() {
-        //observers = new ArrayList<>();
         credentialsFile = new File("credentials.txt");
         // Se il file delle credenziali non esiste, lo crea
         try {
@@ -41,9 +38,9 @@ public class Server extends UserActionObservable {
         return credentialsFile;
     }
 
-    // Metodo per notficare il download
+    /** Metodo per notificare il completamento di un download */
     public void notifyDownload(String username, String fileName) {
-        notifyObservers(username, fileName);
+        notifyObservers(new DownloadInfo(username, fileName));
     }
 
     // Avvia il server in ascolto sulla porta definita

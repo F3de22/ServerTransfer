@@ -57,7 +57,7 @@ public class UploadCommand implements Command {
             // Logging osservatori
             AdminActionObservable obs = new AdminActionObservable();
             obs.addObserver(new LoggerObserver());
-            obs.notifyObservers("Admin ha caricato: " + dest.getAbsolutePath());
+            obs.notifyAdmin("Admin ha caricato: " + dest.getAbsolutePath());
 
         } catch (Exception e) {
             handler.sendMessage("Errore durante l'upload: " + e.getMessage());

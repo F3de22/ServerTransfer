@@ -1,5 +1,6 @@
 package whitebox;
 
+import Server.observers.DownloadInfo;
 import org.junit.jupiter.api.*;
 import Server.Server;
 import Server.observers.LoggerObserver;
@@ -9,9 +10,12 @@ import static org.assertj.core.api.Assertions.*;
 class ObserverWhiteBoxTest {
     private static class SpyObserver extends LoggerObserver {
         boolean notified = false;
+
         @Override
-        public void onFileDownloaded(String user, String fname) {
-            notified = true;
+        public void onFileDownloaded(Object obj) {
+            if (obj instanceof DownloadInfo) {
+                notified = true;
+            }
         }
     }
 

@@ -1,8 +1,8 @@
 package Server.Commands;
 
 import Server.ClientHandler;
-import Server.observers.DownloadObservable;
 import Server.observers.LoggerObserver;
+import Server.observers.UserActionObservable;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,13 +33,22 @@ public class DownloadCommand implements Command {
 
             handler.sendMessage("FILE_CONTENT:" + file.getName() + ":" + encoded);
 
-            try {
+            /*try {
                 DownloadObservable observable = new DownloadObservable();
                 observable.addObserver(new LoggerObserver());
                 observable.notifyObservers(handler.getUsername(), file.getName());
             } catch (Exception e) {
                 System.err.println("Errore nel logging degli observers: " + e.getMessage());
+            }*/
+
+            try {
+                UserActionObservable observable = new UserActionObservable();
+                observable.addObserver(new LoggerObserver());
+                observable.notifyUser("L'utente" + handler.getUsername() + " ha scaricato: " + file.getName());
+            } catch (Exception e) {
+                System.err.println("Errore nel logging download: " + e.getMessage());
             }
+
 
         } catch (IOException e) {
             handler.sendMessage("Errore nel download del file: " + e.getMessage());

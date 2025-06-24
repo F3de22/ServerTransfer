@@ -3,13 +3,15 @@ package Server.observers;
 // Nel nostro progetto LoggerObserver è il nostro Observer (Quidi il nostro osservatore)
 public class LoggerObserver implements Observer {
 	@Override
-	public void update(String message) {
+	public void update(Object message) {
 	    System.out.println("[LOG] " + message);
 	}
 
 	@Override
-	public void onFileDownloaded(String username, String fileName) {
-	    System.out.println("[DOWNLOAD] L'utente " + username + " ha scaricato il file: " + fileName);
+	public void onFileDownloaded(Object obj) {
+		DownloadInfo info = (DownloadInfo) obj;
+		System.out.printf("[DOWNLOAD] Utente %s ha scaricato il file %s\n", info.getUsername(), info.getFileName());
 	}
+
 
 }
