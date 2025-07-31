@@ -4,7 +4,7 @@ package Server.observers;
 public class LoggerObserver implements Observer {
 	@Override
 	public void update(Object message) {
-	    System.out.println("[LOG] " + message);
+	    System.out.println("[LOG] " + (String) message);
 	}
 
 	@Override
